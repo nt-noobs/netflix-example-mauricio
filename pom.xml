@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.edu</groupId>
-	<artifactId>default-system</artifactId>
+	<artifactId>netflix-example-mauricio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>default-system</name>
+	<name>netflix-example-mauricio</name>
 	<description>Sistema padrão para treinamento em Java.</description>
 
 	<parent>

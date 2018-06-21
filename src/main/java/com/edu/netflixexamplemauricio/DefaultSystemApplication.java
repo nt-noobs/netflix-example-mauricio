@@ -1,4 +1,4 @@
-package com.edu.defaultsystem;
+package com.edu.netflixexamplemauricio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
