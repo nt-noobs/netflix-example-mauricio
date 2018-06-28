@@ -1,69 +1,56 @@
 package com.edu.netflixexamplemauricio.entity;
 
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "FILME")
 public class Filme {
 
-    @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    private long id;
-
+    private Long idFilme;
     private String sinopse;
-    private String diretor;
-    private List<String> nacionalidade;
-    private List<String> elenco;
     private double classificacao;
-    private List<String> genero;
-    private int anoProducao;
-    private int anoLancamento;
-    private int duracao;
-    private List<String> premios;
+    private Long anoProducao;
+    private Long anoLancamento;
+    private Long duracao;
+    private String produtora;
+    private String roteirista;
 
-    public long getId() {
-        return id;
+    private Artista artista;
+    private List<Elenco> elenco;
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_FILME")
+    public Long getIdFilme() {
+        return idFilme;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdFilme(Long idFilme) {
+        this.idFilme = idFilme;
     }
 
+
+    @Column(name = "SINOPSE")
     public String getSinopse() {
         return sinopse;
     }
 
     public void setSinopse(String sinopse) {
-        sinopse = sinopse;
+        this.sinopse = sinopse;
     }
 
-    public String getDiretor() {
-        return diretor;
-    }
 
-    public void setDiretor(String diretor) {
-        this.diretor = diretor;
-    }
-
-    public List<String> getNacionalidade() {
-        return nacionalidade;
-    }
-
-    public void setNacionalidade(List<String> nacionalidade) {
-        this.nacionalidade = nacionalidade;
-    }
-
-    public List<String> getElenco() {
-        return elenco;
-    }
-
-    public void setElenco(List<String> elenco) {
-        this.elenco = elenco;
-    }
-
+    @Column(name = "CLASSIFICACAO")
     public double getClassificacao() {
         return classificacao;
     }
@@ -72,60 +59,74 @@ public class Filme {
         this.classificacao = classificacao;
     }
 
-    public List<String> getGenero() {
-        return genero;
-    }
 
-    public void setGenero(List<String> genero) {
-        this.genero = genero;
-    }
-
-    public int getAnoProducao() {
+    @Column(name = "ANO_PRODUCAO")
+    public Long getAnoProducao() {
         return anoProducao;
     }
 
-    public void setAnoProducao(int anoProducao) {
+    public void setAnoProducao(Long anoProducao) {
         this.anoProducao = anoProducao;
     }
 
-    public int getAnoLancamento() {
+
+    @Column(name = "ANO_LANCAMENTO")
+    public Long getAnoLancamento() {
         return anoLancamento;
     }
 
-    public void setAnoLancamento(int anoLancamento) {
+    public void setAnoLancamento(Long anoLancamento) {
         this.anoLancamento = anoLancamento;
     }
 
-    public int getDuracao() {
+
+    @Column(name = "DURACAO")
+    public Long getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(int duracao) {
+    public void setDuracao(Long duracao) {
         this.duracao = duracao;
     }
 
-    public List<String> getPremios() {
-        return premios;
+
+    @Column(name = "PRODUTORA")
+    public String getProdutora() {
+        return produtora;
     }
 
-    public void setPremios(List<String> premios) {
-        this.premios = premios;
+    public void setProdutora(String produtora) {
+        this.produtora = produtora;
     }
 
-    @Override
-    public String toString() {
-        return "Filme{"
-                + "id=" + id
-                + ", Sinopse='" + sinopse + '\''
-                + ", diretor='" + diretor + '\''
-                + ", nacionalidade=" + nacionalidade
-                + ", elenco=" + elenco
-                + ", classificacao=" + classificacao
-                + ", genero=" + genero
-                + ", anoProducao=" + anoProducao
-                + ", anoLancamento=" + anoLancamento
-                + ", duracao=" + duracao
-                + ", premios=" + premios
-                + '}';
+
+    @Column(name = "ROTEIRISTA")
+    public String getRoteirista() {
+        return roteirista;
+    }
+
+    public void setRoteirista(String roteirista) {
+        this.roteirista = roteirista;
+    }
+
+
+    @ManyToOne
+    @JoinColumn(name = "ID_DIRETOR")
+    public Artista getArtista() {
+        return artista;
+    }
+
+    public void setArtista(Artista artista) {
+        this.artista = artista;
+    }
+
+
+    @OneToMany (mappedBy = "filme")
+    public List<Elenco> getElenco() {
+        return elenco;
+    }
+
+    public void setElenco(List<Elenco> elenco) {
+        this.elenco = elenco;
     }
 }
