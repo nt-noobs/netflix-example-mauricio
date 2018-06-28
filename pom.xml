@@ -6,7 +6,7 @@
 	<groupId>com.edu</groupId>
 	<artifactId>netflix-example-mauricio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>netflix-example-mauricio</name>
 	<description>Sistema padrão para treinamento em Java.</description>
@@ -33,7 +33,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
