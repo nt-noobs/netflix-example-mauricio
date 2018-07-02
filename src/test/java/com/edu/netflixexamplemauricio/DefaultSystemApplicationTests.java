@@ -1,4 +1,4 @@
-package com.edu.netflixexamplemauricio.defaultSystem;
+package com.edu.netflixexamplemauricio;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

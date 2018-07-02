@@ -13,16 +13,20 @@ import javax.persistence.Table;
 @Table(name = "ARTISTA")
 public class Artista {
 
-    private Long idArtista;
-    private String nomeArtista;
-
-    private List<Filme> filmes;
-    private List<Elenco> elencos;
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ARTISTA")
+    private Long idArtista;
+
+    @Column(name = "NOME_ARTISTA")
+    private String nomeArtista;
+
+    @OneToMany(mappedBy = "diretor")
+    private List<Filme> filmes;
+
+    @OneToMany(mappedBy = "artista")
+    private List<Elenco> elencos;
+
     public Long getIdArtista() {
         return idArtista;
     }
@@ -31,8 +35,6 @@ public class Artista {
         this.idArtista = idArtista;
     }
 
-
-    @Column(name = "NOME_ARTISTA")
     public String getNomeArtista() {
         return nomeArtista;
     }
@@ -41,8 +43,6 @@ public class Artista {
         this.nomeArtista = nomeArtista;
     }
 
-
-    @OneToMany(mappedBy = "artista")
     public List<Filme> getFilmes() {
         return filmes;
     }
@@ -51,8 +51,6 @@ public class Artista {
         this.filmes = filmes;
     }
 
-
-    @OneToMany (mappedBy = "artista")
     public List<Elenco> getElencos() {
         return elencos;
     }

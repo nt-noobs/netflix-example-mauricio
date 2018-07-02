@@ -15,22 +15,51 @@ import javax.persistence.Table;
 @Table(name = "FILME")
 public class Filme {
 
-    private Long idFilme;
-    private String sinopse;
-    private double classificacao;
-    private Long anoProducao;
-    private Long anoLancamento;
-    private Long duracao;
-    private String produtora;
-    private String roteirista;
-
-    private Artista artista;
-    private List<Elenco> elenco;
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_FILME")
+    private Long idFilme;
+
+    @Column(name = "NOME_FILME")
+    private String nomeFilme;
+
+    @Column(name = "SINOPSE")
+    private String sinopse;
+
+    @Column(name = "CLASSIFICACAO")
+    private Double classificacao;
+
+    @Column(name = "ANO_PRODUCAO")
+    private Long anoProducao;
+
+    @Column(name = "ANO_LANCAMENTO")
+    private Long anoLancamento;
+
+    @Column(name = "DURACAO")
+    private Long duracao;
+
+    @Column(name = "PRODUTORA")
+    private String produtora;
+
+    @Column(name = "ROTEIRISTA")
+    private String roteirista;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_DIRETOR")
+    private Artista diretor;
+
+    @OneToMany(mappedBy = "filme")
+    private List<Elenco> elencos;
+
+    @OneToMany(mappedBy = "filme")
+    private List<FilmePremio> filmePremios;
+
+    @OneToMany(mappedBy = "filme")
+    private List<FilmePais> filmePais;
+
+    @OneToMany(mappedBy = "filme")
+    private List<FilmeGenero> filmeGeneros;
+
     public Long getIdFilme() {
         return idFilme;
     }
@@ -39,8 +68,14 @@ public class Filme {
         this.idFilme = idFilme;
     }
 
+    public String getNomeFilme() {
+        return nomeFilme;
+    }
 
-    @Column(name = "SINOPSE")
+    public void setNomeFilme(String nomeFilme) {
+        this.nomeFilme = nomeFilme;
+    }
+
     public String getSinopse() {
         return sinopse;
     }
@@ -49,18 +84,14 @@ public class Filme {
         this.sinopse = sinopse;
     }
 
-
-    @Column(name = "CLASSIFICACAO")
-    public double getClassificacao() {
+    public Double getClassificacao() {
         return classificacao;
     }
 
-    public void setClassificacao(double classificacao) {
+    public void setClassificacao(Double classificacao) {
         this.classificacao = classificacao;
     }
 
-
-    @Column(name = "ANO_PRODUCAO")
     public Long getAnoProducao() {
         return anoProducao;
     }
@@ -69,8 +100,6 @@ public class Filme {
         this.anoProducao = anoProducao;
     }
 
-
-    @Column(name = "ANO_LANCAMENTO")
     public Long getAnoLancamento() {
         return anoLancamento;
     }
@@ -79,8 +108,6 @@ public class Filme {
         this.anoLancamento = anoLancamento;
     }
 
-
-    @Column(name = "DURACAO")
     public Long getDuracao() {
         return duracao;
     }
@@ -89,8 +116,6 @@ public class Filme {
         this.duracao = duracao;
     }
 
-
-    @Column(name = "PRODUTORA")
     public String getProdutora() {
         return produtora;
     }
@@ -99,8 +124,6 @@ public class Filme {
         this.produtora = produtora;
     }
 
-
-    @Column(name = "ROTEIRISTA")
     public String getRoteirista() {
         return roteirista;
     }
@@ -109,24 +132,43 @@ public class Filme {
         this.roteirista = roteirista;
     }
 
-
-    @ManyToOne
-    @JoinColumn(name = "ID_DIRETOR")
-    public Artista getArtista() {
-        return artista;
+    public Artista getDiretor() {
+        return diretor;
     }
 
-    public void setArtista(Artista artista) {
-        this.artista = artista;
+    public void setDiretor(Artista diretor) {
+        this.diretor = diretor;
     }
 
-
-    @OneToMany (mappedBy = "filme")
-    public List<Elenco> getElenco() {
-        return elenco;
+    public List<Elenco> getElencos() {
+        return elencos;
     }
 
-    public void setElenco(List<Elenco> elenco) {
-        this.elenco = elenco;
+    public void setElencos(List<Elenco> elencos) {
+        this.elencos = elencos;
+    }
+
+    public List<FilmePremio> getFilmePremios() {
+        return filmePremios;
+    }
+
+    public void setFilmePremios(List<FilmePremio> filmePremios) {
+        this.filmePremios = filmePremios;
+    }
+
+    public List<FilmePais> getFilmePais() {
+        return filmePais;
+    }
+
+    public void setFilmePais(List<FilmePais> filmePais) {
+        this.filmePais = filmePais;
+    }
+
+    public List<FilmeGenero> getFilmeGeneros() {
+        return filmeGeneros;
+    }
+
+    public void setFilmeGeneros(List<FilmeGenero> filmeGeneros) {
+        this.filmeGeneros = filmeGeneros;
     }
 }

@@ -10,20 +10,28 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "ELENCO")
+@Table(name = "ELENCO")
 public class Elenco {
-
-    private Long idElenco;
-    private String personagem;
-    private String categoriapersonagem;
-
-    private Filme filme;
-    private Artista artista;
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ELENCO")
+    private Long idElenco;
+
+    @Column(name = "PERSONAGEM")
+    private String personagem;
+
+    @Column(name = "CATEGORIA_PERSONAGEM")
+    private String categoriapersonagem;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_FILME")
+    private Filme filme;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_ARTISTA")
+    private Artista artista;
+
     public Long getIdElenco() {
         return idElenco;
     }
@@ -32,8 +40,6 @@ public class Elenco {
         this.idElenco = idElenco;
     }
 
-
-    @Column (name = "PERSONAGEM")
     public String getPersonagem() {
         return personagem;
     }
@@ -42,8 +48,6 @@ public class Elenco {
         this.personagem = personagem;
     }
 
-
-    @Column (name = "CATEGORIA_PERSONAGEM")
     public String getCategoriapersonagem() {
         return categoriapersonagem;
     }
@@ -52,9 +56,6 @@ public class Elenco {
         this.categoriapersonagem = categoriapersonagem;
     }
 
-
-    @ManyToOne
-    @JoinColumn (name = "ID_FILME")
     public Filme getFilme() {
         return filme;
     }
@@ -63,9 +64,6 @@ public class Elenco {
         this.filme = filme;
     }
 
-
-    @ManyToOne
-    @JoinColumn (name = "ID_ARTISTA")
     public Artista getArtista() {
         return artista;
     }
